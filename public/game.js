@@ -22,7 +22,7 @@ onkeydown = onkeyup = event => {
 }
 
 socket.emit('new player', nickname)
-socket.on('error', () => window.location.href = '/fail.html')
+socket.on('error', error => window.location.href = `/fail.html?error=${error}`)
 
 socket.on('render', (players, fruits, timeStop) => {
   context.clearRect(0, 0, canvas.width, canvas.height)
@@ -48,6 +48,11 @@ socket.on('render', (players, fruits, timeStop) => {
 
 socket.on('score', players => {
   let score = document.querySelector('.score')
-  score.innerHTML = 'Scores <br>'
-  players.forEach(player => score.innerHTML += `${player.nickname}: ${player.score}<br>`)
+  score.innerHTML = '<thead class="text-white border-2 border-black"><tr><td class="text-white border-r-2 border-black pl-2 pr-2">Nickname</td>'+
+                    '<td class="text-white border-2 border-black pl-2 pr-2">Score</td></tr></thead><tbody>'
+  for(let index = 0; index < players.length && index < 10; index++) {
+    score.innerHTML += `<tr><td class="text-white border-2 border-black">${players[index].nickname}</td>`+
+                      `<td class="text-white border-2 border-black">${players[index].score}</td></tr>`
+  }
+  score.innerHTML += '</tbody>'
 })

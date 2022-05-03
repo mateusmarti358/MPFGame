@@ -40,12 +40,14 @@ app.use('/', express.static('public'))
 io.on('connection', socket => {
   let id = players.length
   socket.on('new player', nickname => {
-    if(!contains(players, player => player.nickname == nickname)) {
+    if(contains(players, player => player.nickname == nickname)) socket.emit('error', 'Nickname already taken')
+    else if(nickname == '') socket.emit('error', 'Nickname cannot be empty')
+    else {
       players.push({ nickname: nickname, x: Math.ceil(Math.random()*50), y: Math.ceil(Math.random()*50), score: 0 })
       console.log(`${players[id].nickname} connected`)
       io.emit('render', players, fruits, timeStop)
       io.emit('score', sortScores())
-    } else socket.emit('error', 'Nickname already taken')
+    } 
   })
 
   // ACTION PLAYER
