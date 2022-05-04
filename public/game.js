@@ -33,8 +33,8 @@ socket.on('render', (players, fruits, timeStop) => {
 
   players.forEach(player => {
     if(player.nickname == nickname) {
-      context.fillStyle = "rgba(0, 255, 0, 1)"
-      if(timeStop.isStopped && timeStop.who.nickname != nickname) context.fillStyle = "rgba(0, 255, 0, 0.5)"
+      context.fillStyle = "rgba(0, 255, 255, 1)"
+      if(timeStop.isStopped && timeStop.who.nickname != nickname) context.fillStyle = "rgba(0, 255, 255, 0.5)"
     } else {
       context.fillStyle = "rgba(0, 0, 0, 0.3)"
       if(timeStop.isStopped) {

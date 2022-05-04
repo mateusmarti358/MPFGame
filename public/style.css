@@ -496,12 +496,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: auto;
 }
 
-.mr-auto {
-  margin-right: auto;
-}
-
 .mt-5 {
   margin-top: 1.25rem;
+}
+
+.ml-10 {
+  margin-left: 2.5rem;
+}
+
+.mr-auto {
+  margin-right: auto;
 }
 
 .flex {
@@ -528,6 +532,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-2 {
   border-width: 2px;
+}
+
+.border {
+  border-width: 1px;
 }
 
 .border-r-2 {
