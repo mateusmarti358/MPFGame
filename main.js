@@ -35,7 +35,7 @@ function pushPlayers(id1, id2, direction) {
   let res = false
   switch(direction) {
     case 'up':
-      if(players[id2].y-1 < 0) {
+      if(players[id2].y-1 < 0 && players[id2].score < players[id1].score) {
         if(!players[id1].littlePushTimeout) {
           players[id1].score += 5
           players[id1].littlePushTimeout = true
@@ -43,7 +43,7 @@ function pushPlayers(id1, id2, direction) {
         }
         return false
       }
-      else if(players[id2].score < players[id1].score) {
+      if(players[id2].score < players[id1].score) {
         players.forEach((player, index) => {
           if(index != id2 && index != id1 && !res) {
             if(checkCollision(player.x, players[id2].x, player.y, players[id2].y - 1)) pushPlayers(id1, index, 'up')
@@ -55,7 +55,7 @@ function pushPlayers(id1, id2, direction) {
       else return false
       break
     case 'down':
-      if(players[id2].y+2 > 50) {
+      if(players[id2].y+2 > 50 && players[id2].score < players[id1].score) {
         if(!players[id1].littlePushTimeout) {
           players[id1].score += 5
           players[id1].littlePushTimeout = true
@@ -63,7 +63,7 @@ function pushPlayers(id1, id2, direction) {
         }
         return false
       }
-      else if(players[id2].score < players[id1].score) {
+      if(players[id2].score < players[id1].score) {
         players.forEach((player, index) => {
           if(index != id2 && index != id1 && !res) {
             if(checkCollision(player.x, players[id2].x, player.y, players[id2].y + 1)) pushPlayers(id1, index, 'down')
@@ -75,7 +75,7 @@ function pushPlayers(id1, id2, direction) {
       else return false
       break
     case 'left':
-      if(players[id2].x-1 < 0) {
+      if(players[id2].x-1 < 0 && players[id2].score < players[id1].score) {
         if(!players[id1].littlePushTimeout) {
           players[id1].score += 5
           players[id1].littlePushTimeout = true
@@ -83,7 +83,7 @@ function pushPlayers(id1, id2, direction) {
         }
         return false
       }
-      else if(players[id2].score < players[id1].score) {
+      if(players[id2].score < players[id1].score) {
         players.forEach((player, index) => {
           if(index != id2 && index != id1 && !res) {
             if(checkCollision(player.x - 1, players[id2].x, player.y, players[id2].y)) pushPlayers(id1, index, 'left')
@@ -95,7 +95,7 @@ function pushPlayers(id1, id2, direction) {
       else return false
       break
     case 'right':
-      if(players[id2].x+2 > 50) {
+      if(players[id2].x+2 > 50 && players[id2].score < players[id1].score) {
         if(!players[id1].littlePushTimeout) {
           players[id1].score += 5
           players[id1].littlePushTimeout = true
@@ -103,7 +103,7 @@ function pushPlayers(id1, id2, direction) {
         }
         return false
       }
-      else if(players[id2].score < players[id1].score) {
+      if(players[id2].score < players[id1].score) {
         players.forEach((player, index) => {
           if(index != id2 && index != id1 && !res) {
             if(checkCollision(player.x + 1, players[id2].x, player.y, players[id2].y)) pushPlayers(id1, index, 'right')
