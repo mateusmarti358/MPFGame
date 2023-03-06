@@ -19,11 +19,11 @@ function contains(array, func) {
 }
 
 function sortScores() {
-  let tmp = []
-  players.forEach(player => tmp.push(player))
-  tmp.sort((a, b) => a.nickname.toLowerCase().localeCompare(b.nickname.toLowerCase()))
-  tmp.sort((a, b) => b.score - a.score)
-  return tmp
+  let outSortedPlayers = []
+  players.forEach(player => outSortedPlayers.push(player))
+  outSortedPlayers.sort((a, b) => a.nickname.toLowerCase().localeCompare(b.nickname.toLowerCase()))
+  outSortedPlayers.sort((a, b) => b.score - a.score)
+  return outSortedPlayers
 }
 
 function checkCollision(posX1, posX2, posY1, posY2) {
